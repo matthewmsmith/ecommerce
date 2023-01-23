@@ -1,8 +1,9 @@
 import React from 'react';
 import { client, urlFor } from '../../lib/client';
 
-const ProductDetails = ({product, products}) => {
-  const {image, name, details, price} = product;
+const ProductDetails = ({ product, products }) => {
+  const { image, name, details, price } = product;
+
   return (
     <div>
       <div className='product-detail-container'>
@@ -20,28 +21,26 @@ export const getStaticPaths = async () => {
     slug {
       current
     }
-  }`
-  const products = await client.fetch(query)
+  }`;
+  const products = await client.fetch(query);
   const paths = products.map((product) => ({
     params: {
-      slug: product.slug.current
-    }
-  }))
+      slug: product.slug.current,
+    },
+  }));
   return {
     paths,
-    fallback: 'blocking'
-  }
-  
-}
+    fallback: 'blocking',
+  };
+};
 
-export const getStaticProps = async ({ params: {slug}}) => {
+export const getStaticProps = async ({ params: { slug } }) => {
   const query = `*[_type == "product" && slug.current == '${slug}'][0]`;
-  const product = await client.fetch(query);
-
   const productsQuery = '*[_type == "product"]';
+
+  const product = await client.fetch(query);
   const products = await client.fetch(productsQuery);
 
-  console.log(product);
   return {
     props: { product, products },
   };
