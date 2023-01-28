@@ -422,6 +422,7 @@ padding: 30px 65px;
  margin-top: 60px;
  color: #324d67;
 
+
 }
 
 .product-detail-image{
@@ -439,15 +440,23 @@ padding: 30px 65px;
 }
 .small-images-container{
   display: flex;
-  gap: 10px;
+    gap: 10px;
   margin-top: 20px;
+
 }
 .small-image{
   border-radius: 8px;
   background-color: #ebebeb;
-  width: 70px;
+  width: 60px;
   height: 70px;
   cursor: pointer;
+
+
+}
+.image-container {
+  width: 500px;
+  height: 300px;
+  overflow: hidden;
 }
 
 .selected-image{
@@ -761,4 +770,5 @@ margin-top: 160px;
   width: 300px;
   margin: auto;
 }
+
 }
