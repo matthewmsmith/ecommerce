@@ -2,14 +2,17 @@ import React from "react";
 import Link from "next/link";
 import { urlFor } from "../lib/client";
 
-const HeroBanner = ({ heroBanner: { smallText,
+const HeroBanner = ({ heroBanner:  { smallText,
     midText,
     largeText,
     image,
     product,
     buttonText,
     desc,
+    
+    
   },
+ 
 }) => {
 
   return (

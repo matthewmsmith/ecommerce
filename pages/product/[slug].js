@@ -5,7 +5,6 @@ import {
   AiFillStar,
   AiOutlineStar,
 } from 'react-icons/ai';
-
 import { client, urlFor } from '../../lib/client';
 import { Product } from '../../components';
 import { useStateContext } from '../../context/StateContext';
