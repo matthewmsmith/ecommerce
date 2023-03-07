@@ -11,10 +11,18 @@ import { Product } from '../../components';
 import { useStateContext } from '../../context/StateContext';
 
 
+
 const ProductDetails = ({ product, products }) => {
   const { image, name, details, price } = product;
   const [index, setIndex] = useState(0);
-  const { decreaseQty, increaseQty, qty} = useStateContext();
+  const { decreaseQty, increaseQty, qty, onAdd, setShowCart } = useStateContext();
+
+  const handleBuyNow = () => {
+    onAdd(product, qty)
+    setShowCart(true);
+  }
+
+
   return (
     <div>
       <div className='product-detail-container'>
@@ -67,10 +75,13 @@ const ProductDetails = ({ product, products }) => {
             </p>
           </div>
           <div className='buttons'>
-            <button type='button' className='add-to-cart' onClick=''>
+            <button
+              type='button'
+              className='add-to-cart'
+              onClick={() => onAdd(product, qty)}>
               Add to Cart
             </button>
-            <button type='button' className='buy-now' onClick=''>
+            <button type='button' className='buy-now' onClick={handleBuyNow} >
               Buy Now
             </button>
           </div>
@@ -119,8 +130,7 @@ export const getStaticProps = async ({ params: { slug } }) => {
 
   const product = await client.fetch(query);
   const products = await client.fetch(productsQuery);
-
-  console.log(product);
+ 
 
   return {
     props: { products, product },
